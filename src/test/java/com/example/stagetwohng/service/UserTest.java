@@ -24,7 +24,7 @@ public class UserTest {
     public void testUser() {
 
         User user = new User();
-        user.setName("John Doe");
+        user.setFirstName("John");
         user.setEmail("john.doe@example.com");
 
         userRepository.save(user);
@@ -33,7 +33,7 @@ public class UserTest {
         System.out.println(savedUser);
 
         assertNotNull(savedUser);
-        assertEquals(user.getName(), savedUser.getName());
+        assertEquals(user.getFirstName(), savedUser.getFirstName());
         assertEquals(user.getEmail(), savedUser.getEmail());
 
     }

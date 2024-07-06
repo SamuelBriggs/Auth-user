@@ -22,19 +22,16 @@ public class UserTest {
 
     @Test
     public void testUser() {
-        // Create a new user
+
         User user = new User();
         user.setName("John Doe");
         user.setEmail("john.doe@example.com");
 
-        // Save the user using the repository
         userRepository.save(user);
 
-        // Retrieve the saved user from the database
         User savedUser = userRepository.findById(user.getId()).orElse(null);
         System.out.println(savedUser);
 
-        // Assertions to verify the saved user
         assertNotNull(savedUser);
         assertEquals(user.getName(), savedUser.getName());
         assertEquals(user.getEmail(), savedUser.getEmail());

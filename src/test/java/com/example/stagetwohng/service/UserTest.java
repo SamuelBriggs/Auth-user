@@ -15,7 +15,7 @@ public class UserTest {
 
     @Test
     public void testUser() {
-        user.setEmail("hhhh");
+        user.setEmail("hhhhjjjjj");
         userRepository.save(user);
     }
 

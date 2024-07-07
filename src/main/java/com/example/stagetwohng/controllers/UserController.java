@@ -30,7 +30,6 @@ public class UserController {
         apiResponse.setStatus("Success");
         apiResponse.setData(response);
         return apiResponse;
-
     }
 
 

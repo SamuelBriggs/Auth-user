@@ -9,13 +9,9 @@ import lombok.Setter;
 
 @AllArgsConstructor
 public class UserRegistrationRequest {
-<<<<<<< HEAD
 
-    @NotBlank
-=======
     @NotBlank(message = "Name cannot be blank or contain only spaces.")
     @Size(min = 3, message = "Name must be at least 3 characters long.")
->>>>>>> ce2814c9ff6697beb6e579f13e8d07e770c31439
     private String firstName;
 
 

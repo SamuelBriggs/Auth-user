@@ -23,14 +23,14 @@ public class UserController {
 
     @PostMapping("/auth/register")
 
-    public ApiResponse<UserRegistrationResponse> registerUser(@RequestBody UserRegistrationRequest registrationRequest){
+    public ResponseEntity<ApiResponse<UserRegistrationResponse>> registerUser(@RequestBody UserRegistrationRequest registrationRequest){
         var response = userService.register(registrationRequest);
         ApiResponse<UserRegistrationResponse> apiResponse = new ApiResponse<>();
         apiResponse.setMessage("Registration Successful");
         apiResponse.setStatus("Success");
         apiResponse.setData(response);
+        return HapiResponse;
 
-        return apiResponse;
     }
 
 

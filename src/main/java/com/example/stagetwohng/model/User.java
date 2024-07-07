@@ -2,6 +2,7 @@ package com.example.stagetwohng.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -86,7 +87,7 @@ public class User {
     @NotBlank
     private String userId;
 
-    @NotBlank
+    @NotNull
     private String firstName;
 
     @NotBlank

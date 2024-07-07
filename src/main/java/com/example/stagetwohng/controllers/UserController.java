@@ -21,27 +21,21 @@ public class UserController {
         this.userService = userService;
     }
 
-
-<<<<<<< HEAD
     @PostMapping("/auth/register")
+
     public ApiResponse<UserRegistrationResponse> registerUser(@RequestBody UserRegistrationRequest registrationRequest){
-=======
-    public ResponseEntity<ApiResponse<UserRegistrationResponse>> registerUser(@RequestBody UserRegistrationRequest registrationRequest){
->>>>>>> ce2814c9ff6697beb6e579f13e8d07e770c31439
         var response = userService.register(registrationRequest);
         ApiResponse<UserRegistrationResponse> apiResponse = new ApiResponse<>();
         apiResponse.setMessage("Registration Successful");
         apiResponse.setStatus("Success");
         apiResponse.setData(response);
-<<<<<<< HEAD
         return apiResponse;
-=======
-        return HapiResponse;
->>>>>>> ce2814c9ff6697beb6e579f13e8d07e770c31439
 
     }
 
+
     @GetMapping("/api/user/{id}")
+
     public ApiResponse<?> getUser(@PathVariable Long id){
         var response = userService.getUser(id);
 
@@ -51,6 +45,7 @@ public class UserController {
         apiResponse.setData(response);
 
         return apiResponse;
+
     }
 
 

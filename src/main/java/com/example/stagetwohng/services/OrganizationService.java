@@ -2,6 +2,7 @@ package com.example.stagetwohng.services;
 
 import com.example.stagetwohng.dtos.requests.OrganizationRegistrationRequest;
 import com.example.stagetwohng.dtos.responses.OrganizationCreationResponse;
+import com.example.stagetwohng.dtos.responses.UserOrganizationResponse;
 
 public interface OrganizationService {
 

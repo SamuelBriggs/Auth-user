@@ -2,6 +2,8 @@ package com.example.stagetwohng.security.filter;
 
 import com.example.stagetwohng.dtos.requests.LoginRequest;
 import com.example.stagetwohng.dtos.responses.ApiResponse;
+import com.example.stagetwohng.dtos.responses.LoginResponse;
+import com.example.stagetwohng.dtos.responses.UserData;
 import com.example.stagetwohng.model.User;
 import com.example.stagetwohng.repository.UserRepository;
 import com.example.stagetwohng.security.JwtUtils;
@@ -72,12 +74,21 @@ public class HngAuthenticationFilter extends UsernamePasswordAuthenticationFilte
             Optional<User> foundUser = userRepository.findByEmail(email);
             String accessToken = jwtUtil.generateAccessToken(email);
             Map<String, Object> responseData = new HashMap<>();
-//        ApiResponse<?> successResponse = ApiResponse.builder().success(true).message("Login successful").data(accessToken).build();
+            String userId = foundUser.get().getUserId();
+            String phone = foundUser.get().getPhone();
+            String firstName = foundUser.get().getFirstName();
+            String lastName = foundUser.get().getLastName();
+            UserData userData = new UserData(userId, firstName, lastName, email, phone);
+          LoginResponse loginResponse = new LoginResponse();
+          loginResponse.setMessage("Login Successful");
+          loginResponse.setAccessToken(accessToken);
+          loginResponse.setStatus("Success");
+          loginResponse.setUserData(userData);
             responseData.put("access_token", accessToken);
 //        responseData.put("", successResponse);
             response.setContentType(APPLICATION_JSON_VALUE);
             response.getOutputStream().write(objectMapper.writeValueAsBytes(
-                    responseData));
+                    loginResponse));
         }
 
 

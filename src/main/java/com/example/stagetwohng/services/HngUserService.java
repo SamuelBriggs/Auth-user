@@ -44,6 +44,10 @@ public class HngUserService implements UserService{
 
         User savedUser = userRepository.save(user);
 
+        savedUser.setUserId(savedUser.getId().toString());
+
+        userRepository.save(user);
+
 
         Organization organization = new Organization();
         organization.setName(request.getFirstName() + " 's" + " Organization");
@@ -62,6 +66,21 @@ public class HngUserService implements UserService{
         userRegistrationResponse.setAccessToken(jwtUtils.generateAccessToken(request.getEmail()));
 
         return userRegistrationResponse;
+    }
+
+    @Override
+
+    public UserData getUser(Long userId){
+
+        var user = userRepository.findById(userId);
+        String usrId = user.get().getUserId();
+        String firstName = user.get().getFirstName();
+        String lastName = user.get().getLastName();
+        String phone = user.get().getPhone();
+        String email = user.get().getEmail();
+
+        return new UserData(usrId, firstName, lastName, email, phone);
+
     }
 
 

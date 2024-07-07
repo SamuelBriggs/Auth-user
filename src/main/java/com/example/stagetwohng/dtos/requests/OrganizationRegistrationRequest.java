@@ -9,6 +9,9 @@ import lombok.Setter;
 public class OrganizationRegistrationRequest {
     private String name;
 
+    @NotBlank
+    private String description;
+
     public @NotBlank String getDescription() {
         return description;
     }
@@ -25,8 +28,7 @@ public class OrganizationRegistrationRequest {
         this.name = name;
     }
 
-    @NotBlank
-    private String description;
+
 
 
 

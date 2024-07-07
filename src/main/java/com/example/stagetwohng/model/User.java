@@ -15,6 +15,36 @@ import java.util.List;
 @Table(name = "\"UserData\"")
 @ToString
 public class User {
+
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(unique = true)
+    @NotBlank
+    private String userId;
+
+    @NotNull
+    private String firstName;
+
+    @NotBlank
+    private String lastName;
+
+    @Column(unique = true)
+    @NotBlank
+    private String email;
+
+    @NotBlank
+    private String password;
+
+    private String phone;
+    @OneToMany
+    private List<Organization> organizations = new ArrayList<>();
+
+
+
+
     public Long getId() {
         return id;
     }
@@ -79,30 +109,8 @@ public class User {
         this.organizations = organizations;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
-    @Column(unique = true)
-    @NotBlank
-    private String userId;
 
-    @NotNull
-    private String firstName;
-
-    @NotBlank
-    private String lastName;
-
-    @Column(unique = true)
-    @NotBlank
-    private String email;
-
-    @NotBlank
-    private String password;
-
-    private String phone;
-    @OneToMany
-    private List<Organization> organizations = new ArrayList<>();
 
 
 }

@@ -7,13 +7,13 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-@AllArgsConstructor
-
 
 public class UserRegistrationRequest {
+
     @NotBlank(message = "Name cannot be blank or contain only spaces.")
     @Size(min = 3, message = "Name must be at least 3 characters long.")
     private String firstName;
+
 
     public @NotBlank String getFirstName() {
         return firstName;
@@ -58,11 +58,14 @@ public class UserRegistrationRequest {
     @NotBlank(message = "Name cannot be blank or contain only spaces.")
     @Size(min = 3, message = "Name must be at least 3 characters long.")
     private String lastName;
+
     @NotBlank
     @Column (unique = true)
     private String email;
+
     @NotBlank(message = "Provide a Password")
     private String password;
+
     private String phone;
 
 

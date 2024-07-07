@@ -1,4 +1,4 @@
-package com.example.stagetwohng.services;
+package com.example.stagetwohng.services.user;
 
 import com.example.stagetwohng.dtos.requests.UserRegistrationRequest;
 import com.example.stagetwohng.dtos.responses.UserRegistrationResponse;
@@ -9,16 +9,17 @@ import com.example.stagetwohng.model.User;
 import com.example.stagetwohng.repository.OrganizationRepository;
 import com.example.stagetwohng.repository.UserRepository;
 import com.example.stagetwohng.security.JwtUtils;
-import lombok.Setter;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
+import java.util.Optional;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 
 public class HngUserService implements UserService{
+
+
     private final OrganizationRepository organizationRepository;
 
     private final UserRepository userRepository;
@@ -38,7 +39,6 @@ public class HngUserService implements UserService{
 
     @Override
     public UserRegistrationResponse register(UserRegistrationRequest request) {
-
         User user = new User();
         user.setEmail(request.getEmail());
         user.setFirstName(request.getFirstName());
@@ -50,7 +50,7 @@ public class HngUserService implements UserService{
 
         savedUser.setUserId(savedUser.getId().toString());
 
-     //   userRepository.save(user);
+        //   userRepository.save(user);
 
 
         Organization organization = new Organization();
@@ -99,6 +99,18 @@ public class HngUserService implements UserService{
 
     }
 
+    @Override
+    public UserData save(User user) {
+        userRepository.save(user);
+        return null;
+    }
+
+
+    @Override
+    public User findByUserId(String userId) {
+        Optional<User> user = userRepository.findByUserId(userId);
+        return user.orElse(null);
+    }
 
 
 }

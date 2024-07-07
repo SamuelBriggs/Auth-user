@@ -4,7 +4,7 @@ import com.example.stagetwohng.dtos.requests.UserRegistrationRequest;
 import com.example.stagetwohng.dtos.responses.ApiResponse;
 import com.example.stagetwohng.dtos.responses.UserData;
 import com.example.stagetwohng.dtos.responses.UserRegistrationResponse;
-import com.example.stagetwohng.services.HngUserService;
+import com.example.stagetwohng.services.user.HngUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -23,14 +23,13 @@ public class UserController {
 
     @PostMapping("/auth/register")
 
-    public ResponseEntity<ApiResponse<UserRegistrationResponse>> registerUser(@RequestBody UserRegistrationRequest registrationRequest){
+    public ApiResponse<UserRegistrationResponse> registerUser(@RequestBody UserRegistrationRequest registrationRequest){
         var response = userService.register(registrationRequest);
         ApiResponse<UserRegistrationResponse> apiResponse = new ApiResponse<>();
         apiResponse.setMessage("Registration Successful");
         apiResponse.setStatus("Success");
         apiResponse.setData(response);
-        return ResponseEntity.status(HttpStatus.CREATED).body(apiResponse);
-
+        return apiResponse;
     }
 
 

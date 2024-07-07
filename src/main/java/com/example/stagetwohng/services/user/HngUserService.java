@@ -53,13 +53,17 @@ public class HngUserService implements UserService{
 
         Organization organization = new Organization();
         organization.setName(request.getFirstName() + " 's" + " Organization");
-        organization.setUserId(savedUser.getUserId());
+        var listOfUsers = organization.getUserId();
+        listOfUsers.add(savedUser.getUserId());
+        organization.setUserId(listOfUsers);
         organizationRepository.save(organization);
 
         var allOrgs = savedUser.getOrganizations();
         allOrgs.add(organization);
 
         savedUser.setOrganizations(allOrgs);
+
+        userRepository.save(savedUser);
 
         String userId = savedUser.getUserId();
         String firstName = savedUser.getFirstName();

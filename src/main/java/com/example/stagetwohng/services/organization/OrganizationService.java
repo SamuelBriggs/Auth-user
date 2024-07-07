@@ -1,6 +1,7 @@
 package com.example.stagetwohng.services.organization;
 
 import com.example.stagetwohng.dtos.requests.OrganizationRegistrationRequest;
+import com.example.stagetwohng.dtos.requests.UserToOrgRequest;
 import com.example.stagetwohng.dtos.responses.OrganizationCreationResponse;
 import com.example.stagetwohng.dtos.responses.UserOrganizationResponse;
 import com.example.stagetwohng.model.Organization;
@@ -19,5 +20,7 @@ public interface OrganizationService {
     List<Organization> findAllOrganization();
 
     UserOrganizationResponse getOrgById(String orgId);
+
+    void addUserToOrg(UserToOrgRequest userToOrgRequest, String orgId);
 
 }

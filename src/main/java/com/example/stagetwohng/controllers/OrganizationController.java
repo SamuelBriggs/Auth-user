@@ -1,6 +1,7 @@
 package com.example.stagetwohng.controllers;
 
 import com.example.stagetwohng.dtos.requests.OrganizationRegistrationRequest;
+import com.example.stagetwohng.dtos.requests.UserToOrgRequest;
 import com.example.stagetwohng.dtos.responses.ApiResponse;
 import com.example.stagetwohng.dtos.responses.OrganizationCreationResponse;
 import com.example.stagetwohng.dtos.responses.UserOrganizationResponse;
@@ -31,8 +32,8 @@ public class OrganizationController {
 
     public ApiResponse<?> getAllUserOgs(){
 
-        String email = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        email = email.substring(0, email.length()-1);
+        String userId = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
+        String email = userId.substring(1, userId.length() - 1);
         var user = userRepository.findByEmail(email);
 
        var response =  organizationService.getAllUsersOrganizations(user.get().getId());
@@ -71,6 +72,19 @@ public class OrganizationController {
         apiResponse.setSuccess("Success");
         apiResponse.setMessage("<message>");
         return apiResponse;
+
+    }
+
+    @PostMapping("/api/organisations/{orgId}/users")
+
+    public ApiResponse<?> addUserToOrg(@PathVariable String orgId, UserToOrgRequest userToOrgRequest){
+
+        organizationService.addUserToOrg(userToOrgRequest, orgId);
+
+        ApiResponse<?> response = new ApiResponse<>();
+        response.setMessage("Success");
+        response.setMessage("User added successfully");
+        return response;
 
     }
 

@@ -1,19 +1,19 @@
 package com.example.stagetwohng.services.organization;
 
 import com.example.stagetwohng.dtos.requests.OrganizationRegistrationRequest;
+import com.example.stagetwohng.dtos.requests.UserToOrgRequest;
 import com.example.stagetwohng.dtos.responses.OrganizationCreationResponse;
 import com.example.stagetwohng.dtos.responses.UserOrganizationResponse;
 import com.example.stagetwohng.model.Organization;
 import com.example.stagetwohng.repository.OrganizationRepository;
 import com.example.stagetwohng.repository.UserRepository;
-import org.aspectj.weaver.ast.Or;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Service
+@Component
 public class HngOrganizationService implements OrganizationService{
 
     private final UserRepository userRepository;
@@ -76,6 +76,18 @@ public class HngOrganizationService implements OrganizationService{
         userOrganizationResponse.setOrgId(orgId);
 
         return userOrganizationResponse;
+    }
+
+    @Override
+    public void addUserToOrg(UserToOrgRequest userToOrgRequest, String orgId) {
+      var allOrgs =  organizationRepository.findAll();
+      Organization org = new Organization();
+      for (int i = 0; i < allOrgs.size() ; i++) {
+            if(allOrgs.get(i).getOrgId().equals(orgId)) org = allOrgs.get(i);
+        }
+       var listOfIds = org.getUserId();
+        listOfIds.add(userToOrgRequest.getUserId());
+
     }
 
 

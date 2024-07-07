@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
 
 
 @Entity
@@ -18,7 +19,7 @@ public class Organization {
     @NotBlank
     private String name;
 
-    private String userId;
+    private List<String> userId;
 
     @Column(unique = true)
     private String orgId;
@@ -35,7 +36,7 @@ public class Organization {
         this.name = name;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(List<String> userId) {
         this.userId = userId;
     }
 
@@ -55,7 +56,7 @@ public class Organization {
         return name;
     }
 
-    public String getUserId() {
+    public List<String> getUserId() {
         return userId;
     }
 
@@ -66,6 +67,10 @@ public class Organization {
     public String getDescription() {
         return description;
     }
+
+
+
+
 
 
 

@@ -38,7 +38,6 @@ public class UserController {
         apiResponse.setData(response);
 
         return apiResponse;
-
     }
 
 

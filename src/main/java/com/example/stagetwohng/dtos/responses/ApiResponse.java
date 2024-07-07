@@ -6,6 +6,7 @@ import lombok.*;
 public class ApiResponse<T> {
     private String message;
     private String status;
+    private T data;
 
     public String getMessage() {
         return message;
@@ -31,5 +32,5 @@ public class ApiResponse<T> {
         this.data = data;
     }
 
-    private T data;
+
 }

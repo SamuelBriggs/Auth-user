@@ -1,4 +1,4 @@
-package com.example.stagetwohng.services;
+package com.example.stagetwohng.services.organization;
 
 import com.example.stagetwohng.dtos.requests.OrganizationRegistrationRequest;
 import com.example.stagetwohng.dtos.responses.OrganizationCreationResponse;
@@ -8,10 +8,12 @@ import com.example.stagetwohng.repository.OrganizationRepository;
 import com.example.stagetwohng.repository.UserRepository;
 import org.aspectj.weaver.ast.Or;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class HngOrganizationService implements OrganizationService{
 
     private final UserRepository userRepository;
@@ -47,6 +49,11 @@ public class HngOrganizationService implements OrganizationService{
        response.setOrgId(savedOrg.getOrgId());
        response.setName(savedOrg.getName());
         return response;
+    }
+
+    @Override
+    public List<Organization> findAllOrganization() {
+        return organizationRepository.findAll();
     }
 
     @Override

@@ -82,7 +82,7 @@ public class User {
     private Long id;
 
     @Column(unique = true)
- //   @NotBlank
+    @NotBlank
     private String userId;
 
     @NotBlank

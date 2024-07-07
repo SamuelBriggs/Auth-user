@@ -1,9 +1,19 @@
 package com.example.stagetwohng;
 
+import com.example.stagetwohng.dtos.requests.UserRegistrationRequest;
+import com.example.stagetwohng.model.Organization;
+import com.example.stagetwohng.model.User;
 import com.example.stagetwohng.security.JwtUtils;
+import com.example.stagetwohng.services.organization.OrganizationService;
+import com.example.stagetwohng.services.user.UserService;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -12,6 +22,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class authSpec {
 
     private JwtUtils jwtUtils;
+
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private OrganizationService organizationService;
+
+    private User user = new User();
 
     /**
      * It Should Register User Successfully with Default Organisation:Ensure a user is registered successfully when no organisation details are provided.
@@ -25,6 +43,16 @@ public class authSpec {
      * Verify the response contains a status code of 422 and appropriate error messages.
      * */
 
+    @BeforeEach()
+    public void setUp() {
+        user.setFirstName("Diana");
+        user.setLastName("Exodus");
+        user.setUserId("");
+        user.setEmail("");
+        user.setPassword("");
+        user.setEmail("");
+        user.setOrganizations(new ArrayList<>());
+    }
 
     @Test
     @DisplayName("Test token expired after 24 hours")
@@ -51,16 +79,39 @@ public class authSpec {
     @Test
     @DisplayName("User registration is successful with Default Organization")
     public void test_user_registration_is_successful_without_organization_details() {
-
+        UserRegistrationRequest request = new UserRegistrationRequest(user.getFirstName(), user.getLastName(), user.getEmail(), user.getPassword(), user.getPhone());
+        var response = userService.register(request);
+        assert response != null;
+        assertThat(response.getAccessToken()).isNotNull();
+        assertThat(response.getUser()).isNotNull();
+        System.out.println(response);
     }
+
+
     @Test
     @DisplayName("")
     public void test_organization_name_carries_user_first_name() {
+        UserRegistrationRequest request = new UserRegistrationRequest(user.getFirstName(), user.getLastName(), user.getEmail(), user.getPassword(), user.getPhone());
+        var response = userService.register(request);
+        String userId = response.getUser().getUserId();
+        Organization organization = null;
+        List<Organization> allOrganization = organizationService.findAllOrganization();
+        for (Organization org: allOrganization) {
+            if (org.getUserId().equals(userId)) {
+                organization = org;
+            }
+        }
 
+        assertThat(organization).isNotNull();
+        assert organization != null;
+        assertThat(organization.getName()).isEqualTo(user.getFirstName() + "'s Organization");
     }
+
+
     @Test
     @DisplayName("")
     public void test_response_contains_expected_user_details() {
+
 
     }
 

@@ -7,11 +7,11 @@ import lombok.Getter;
 import lombok.Setter;
 
 @AllArgsConstructor
-
-
 public class UserRegistrationRequest {
+
     @NotBlank
     private String firstName;
+
 
     public @NotBlank String getFirstName() {
         return firstName;
@@ -55,11 +55,14 @@ public class UserRegistrationRequest {
 
     @NotBlank
     private String lastName;
+
     @NotBlank
     @Column (unique = true)
     private String email;
+
     @NotBlank(message = "Provide a Password")
     private String password;
+
     private String phone;
 
 

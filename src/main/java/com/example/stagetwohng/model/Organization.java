@@ -14,6 +14,19 @@ public class Organization {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(unique = true)
+    @NotBlank
+    private String name;
+
+    private String userId;
+
+    @Column(unique = true)
+    private String orgId;
+
+    private String description;
+
+
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -54,16 +67,7 @@ public class Organization {
         return description;
     }
 
-    @Column(unique = true)
-    @NotBlank
-    private String name;
-    private String userId;
 
-    @Column(unique = true)
-
-    private String orgId;
-
-    private String description;
 
 
 }

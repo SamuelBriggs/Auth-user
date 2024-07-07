@@ -4,9 +4,7 @@ import com.example.stagetwohng.dtos.requests.UserRegistrationRequest;
 import com.example.stagetwohng.dtos.responses.ApiResponse;
 import com.example.stagetwohng.dtos.responses.UserData;
 import com.example.stagetwohng.dtos.responses.UserRegistrationResponse;
-import com.example.stagetwohng.services.HngUserService;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import com.example.stagetwohng.services.user.HngUserService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

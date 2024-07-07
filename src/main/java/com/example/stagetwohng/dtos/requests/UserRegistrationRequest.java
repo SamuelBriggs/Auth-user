@@ -2,14 +2,20 @@ package com.example.stagetwohng.dtos.requests;
 
 import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 @AllArgsConstructor
 public class UserRegistrationRequest {
+<<<<<<< HEAD
 
     @NotBlank
+=======
+    @NotBlank(message = "Name cannot be blank or contain only spaces.")
+    @Size(min = 3, message = "Name must be at least 3 characters long.")
+>>>>>>> ce2814c9ff6697beb6e579f13e8d07e770c31439
     private String firstName;
 
 
@@ -53,7 +59,8 @@ public class UserRegistrationRequest {
         this.phone = phone;
     }
 
-    @NotBlank
+    @NotBlank(message = "Name cannot be blank or contain only spaces.")
+    @Size(min = 3, message = "Name must be at least 3 characters long.")
     private String lastName;
 
     @NotBlank

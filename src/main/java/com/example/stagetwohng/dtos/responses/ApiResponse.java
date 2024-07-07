@@ -16,12 +16,12 @@ public class ApiResponse<T> {
         this.message = message;
     }
 
-    public String isSuccess() {
+    public String getStatus() {
         return status;
     }
 
-    public void setSuccess(String success) {
-        this.status = success;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public T getData() {
@@ -31,6 +31,5 @@ public class ApiResponse<T> {
     public void setData(T data) {
         this.data = data;
     }
-
 
 }

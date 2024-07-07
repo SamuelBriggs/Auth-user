@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -12,21 +13,8 @@ import java.util.List;
 public class Organization {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(unique = true)
-    @NotBlank
-    private String name;
-
-    private List<String> userId;
-
-    @Column(unique = true)
-    private String orgId;
-
-    private String description;
-
-
 
     public void setId(Long id) {
         this.id = id;
@@ -67,6 +55,19 @@ public class Organization {
     public String getDescription() {
         return description;
     }
+
+
+    @NotBlank
+    private String name;
+
+    private List<String> userId = new ArrayList<>();
+
+    @Column(unique = true)
+
+    private String orgId;
+
+    private String description;
+
 
 
 

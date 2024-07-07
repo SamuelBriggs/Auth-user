@@ -2,10 +2,12 @@ package com.example.stagetwohng.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -14,15 +16,16 @@ import java.util.List;
 @ToString
 public class User {
 
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(unique = true)
-    //   @NotBlank
+    @NotBlank
     private String userId;
 
-    @NotBlank
+    @NotNull
     private String firstName;
 
     @NotBlank
@@ -37,7 +40,7 @@ public class User {
 
     private String phone;
     @OneToMany
-    private List<Organization> organizations;
+    private List<Organization> organizations = new ArrayList<>();
 
 
 
@@ -105,6 +108,8 @@ public class User {
     public void setOrganizations(List<Organization> organizations) {
         this.organizations = organizations;
     }
+
+
 
 
 

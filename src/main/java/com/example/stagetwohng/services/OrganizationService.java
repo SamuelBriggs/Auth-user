@@ -4,13 +4,15 @@ import com.example.stagetwohng.dtos.requests.OrganizationRegistrationRequest;
 import com.example.stagetwohng.dtos.responses.OrganizationCreationResponse;
 import com.example.stagetwohng.dtos.responses.UserOrganizationResponse;
 
+import java.util.List;
+
 public interface OrganizationService {
 
 
-    UserOrganizationResponse getAllUsersOrganizations(Long userId);
+    List<UserOrganizationResponse> getAllUsersOrganizations(Long userId);
 
     OrganizationCreationResponse createNewOrganization(OrganizationRegistrationRequest organizationRegistrationRequest);
 
-
+    UserOrganizationResponse getOrgById(String orgId);
 
 }

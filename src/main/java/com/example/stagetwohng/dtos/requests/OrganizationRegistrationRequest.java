@@ -8,6 +8,23 @@ import lombok.Setter;
 @Setter
 public class OrganizationRegistrationRequest {
     private String name;
+
+    public @NotBlank String getDescription() {
+        return description;
+    }
+
+    public void setDescription(@NotBlank String description) {
+        this.description = description;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     @NotBlank
     private String description;
 

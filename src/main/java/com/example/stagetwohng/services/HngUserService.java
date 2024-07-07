@@ -46,13 +46,19 @@ public class HngUserService implements UserService{
 
         savedUser.setUserId(savedUser.getId().toString());
 
-        userRepository.save(user);
+     //   userRepository.save(user);
 
 
         Organization organization = new Organization();
         organization.setName(request.getFirstName() + " 's" + " Organization");
         organization.setUserId(savedUser.getUserId());
         organizationRepository.save(organization);
+
+        var allOrgs = savedUser.getOrganizations();
+        allOrgs.add(organization);
+
+        savedUser.setOrganizations(allOrgs);
+
         String userId = savedUser.getUserId();
         String firstName = savedUser.getFirstName();
         String lastName = savedUser.getLastName();
@@ -82,8 +88,6 @@ public class HngUserService implements UserService{
         return new UserData(usrId, firstName, lastName, email, phone);
 
     }
-
-
 
 
 

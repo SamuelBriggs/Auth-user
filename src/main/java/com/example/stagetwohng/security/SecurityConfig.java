@@ -39,7 +39,7 @@ public class SecurityConfig {
                 .addFilterBefore(authorizationFilter, HngAuthenticationFilter.class)
                 .addFilterAt(authenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests(request -> request.requestMatchers("/login", "/auth/register").permitAll()
-                        .requestMatchers("/lo" ).authenticated())
+                        .requestMatchers("/api/organisations", "/api/user/{id}", "/api/organisations/{orgId}", "/api/organisations" ).authenticated())
                 .build();
     }
 }

@@ -7,7 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-@AllArgsConstructor
+
 public class UserRegistrationRequest {
 
     @NotBlank(message = "Name cannot be blank or contain only spaces.")

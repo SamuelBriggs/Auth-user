@@ -7,12 +7,17 @@ import com.example.stagetwohng.model.Organization;
 
 import java.util.List;
 
+import java.util.List;
+
 public interface OrganizationService {
 
 
-    UserOrganizationResponse getAllUsersOrganizations(Long userId);
+    List<UserOrganizationResponse> getAllUsersOrganizations(Long userId);
 
     OrganizationCreationResponse createNewOrganization(OrganizationRegistrationRequest organizationRegistrationRequest);
 
     List<Organization> findAllOrganization();
+
+    UserOrganizationResponse getOrgById(String orgId);
+
 }

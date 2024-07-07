@@ -12,6 +12,9 @@ import lombok.Setter;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 
 public class HngUserService implements UserService{
@@ -50,11 +53,12 @@ public class HngUserService implements UserService{
 
 
         Organization organization = new Organization();
-        organization.setName(request.getFirstName() + " 's" + " Organization");
-        var listOfUsers = organization.getUserId();
+        organization.setName(request.getFirstName() + "'s" + " Organization");
+        List<String> listOfUsers = new ArrayList<>();
         listOfUsers.add(savedUser.getUserId());
         organization.setUserId(listOfUsers);
-        organizationRepository.save(organization);
+      Organization savedOrg =   organizationRepository.save(organization);
+        savedOrg.setOrgId(savedOrg.getId().toString());
 
         var allOrgs = savedUser.getOrganizations();
         allOrgs.add(organization);

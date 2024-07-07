@@ -48,16 +48,16 @@ public class HngOrganizationService implements OrganizationService{
        organizationRepository.save(savedOrg);
 
        OrganizationCreationResponse response = new OrganizationCreationResponse();
-       response.setDescription(savedOrg.getDescription());
+       response.setDescription(organizationRegistrationRequest.getDescription());
        response.setOrgId(savedOrg.getOrgId());
-       response.setName(savedOrg.getName());
+       response.setName(organizationRegistrationRequest.getName());
         return response;
     }
 
     @Override
     public UserOrganizationResponse getOrgById(String orgId) {
-        String email = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        email = email.substring(0, email.length()-1);
+        String userId = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
+        String email = userId.substring(1, userId.length() - 1);
        var user  = userRepository.findByEmail(email);
        var response = user.get().getOrganizations();
 
@@ -79,11 +79,16 @@ public class HngOrganizationService implements OrganizationService{
     @Override
     public void addUserToOrg(UserToOrgRequest userToOrgRequest, String orgId) {
       var allOrgs =  organizationRepository.findAll();
+      if (allOrgs.isEmpty()) return;
+      System.out.println(allOrgs.size());
       Organization org = new Organization();
       for (int i = 0; i < allOrgs.size() ; i++) {
-            if(allOrgs.get(i).getOrgId().equals(orgId)) org = allOrgs.get(i);
+          if(allOrgs.get(i).getOrgId() == null) continue;
+          if(allOrgs.get(i).getOrgId().equals(orgId)) org = allOrgs.get(i);
         }
-       var listOfIds = org.getUserId();
+        System.out.println(org.toString());
+        List<String> list =  org.getUserId();
+        List<String> listOfIds = new ArrayList<>(list);
         listOfIds.add(userToOrgRequest.getUserId());
 
     }

@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -55,11 +56,11 @@ public class Organization {
         return description;
     }
 
-    @Column(unique = true)
+
     @NotBlank
     private String name;
 
-    private List<String> userId;
+    private List<String> userId = new ArrayList<>();
 
     @Column(unique = true)
 

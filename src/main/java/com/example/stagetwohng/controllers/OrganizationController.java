@@ -42,7 +42,7 @@ public class OrganizationController {
        ApiResponse<List<UserOrganizationResponse>> apiResponse = new ApiResponse<>();
 
        apiResponse.setData(response);
-       apiResponse.setSuccess("Success");
+       apiResponse.setStatus("Success");
        apiResponse.setMessage("<message>");
 
         return apiResponse;
@@ -57,7 +57,7 @@ public class OrganizationController {
         ApiResponse<UserOrganizationResponse> apiResponse = new ApiResponse<>();
 
         apiResponse.setData(response);
-        apiResponse.setSuccess("Success");
+        apiResponse.setStatus("Success");
         apiResponse.setMessage("<message>");
         return apiResponse;
     }
@@ -70,7 +70,7 @@ public class OrganizationController {
         var response = organizationService.createNewOrganization(registrationRequest);
         ApiResponse<OrganizationCreationResponse> apiResponse = new ApiResponse<>();
         apiResponse.setData(response);
-        apiResponse.setSuccess("Success");
+        apiResponse.setStatus("Success");
         apiResponse.setMessage("<message>");
         return apiResponse;
 

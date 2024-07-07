@@ -27,7 +27,7 @@ public class UserController {
         var response = userService.register(registrationRequest);
         ApiResponse<UserRegistrationResponse> apiResponse = new ApiResponse<>();
         apiResponse.setMessage("Registration Successful");
-        apiResponse.setSuccess("Success");
+        apiResponse.setStatus("Success");
         apiResponse.setData(response);
 
         return apiResponse;
@@ -41,7 +41,7 @@ public class UserController {
 
         ApiResponse<UserData> apiResponse = new ApiResponse<>();
         apiResponse.setMessage("<message>");
-        apiResponse.setSuccess("Success");
+        apiResponse.setStatus("Success");
         apiResponse.setData(response);
 
         return apiResponse;

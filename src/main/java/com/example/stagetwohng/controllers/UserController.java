@@ -29,7 +29,7 @@ public class UserController {
         apiResponse.setMessage("Registration Successful");
         apiResponse.setStatus("Success");
         apiResponse.setData(response);
-        return HapiResponse;
+        return ResponseEntity.status(HttpStatus.CREATED).body(apiResponse);
 
     }
 

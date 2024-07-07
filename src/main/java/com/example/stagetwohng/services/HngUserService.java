@@ -3,6 +3,7 @@ package com.example.stagetwohng.services;
 import com.example.stagetwohng.dtos.requests.UserRegistrationRequest;
 import com.example.stagetwohng.dtos.responses.UserRegistrationResponse;
 import com.example.stagetwohng.dtos.responses.UserData;
+import com.example.stagetwohng.exceptions.HngException;
 import com.example.stagetwohng.model.Organization;
 import com.example.stagetwohng.model.User;
 import com.example.stagetwohng.repository.OrganizationRepository;
@@ -79,7 +80,8 @@ public class HngUserService implements UserService{
         userRegistrationResponse.setUser(userData);
         userRegistrationResponse.setAccessToken(jwtUtils.generateAccessToken(request.getEmail()));
 
-        return userRegistrationResponse;
+        if(userRegistrationResponse!=null) return userRegistrationResponse;
+        else throw new HngException("Error Creating New User");
     }
 
     @Override

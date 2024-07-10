@@ -22,20 +22,20 @@ public class User {
     private Long id;
 
     @Column(unique = true)
-    @NotBlank
+ //   @NotBlank
     private String userId;
 
     @NotNull
     private String firstName;
 
-    @NotBlank
+ //   @NotBlank
     private String lastName;
 
     @Column(unique = true)
-    @NotBlank
+  //  @NotBlank
     private String email;
 
-    @NotBlank
+ //   @NotBlank
     private String password;
 
     private String phone;
@@ -53,43 +53,43 @@ public class User {
         this.id = id;
     }
 
-    public @NotBlank String getUserId() {
+    public  String getUserId() {
         return userId;
     }
 
-    public void setUserId(@NotBlank String userId) {
+    public void setUserId( String userId) {
         this.userId = userId;
     }
 
-    public @NotBlank String getFirstName() {
+    public String getFirstName() {
         return firstName;
     }
 
-    public void setFirstName(@NotBlank String firstName) {
+    public void setFirstName( String firstName) {
         this.firstName = firstName;
     }
 
-    public @NotBlank String getLastName() {
+    public  String getLastName() {
         return lastName;
     }
 
-    public void setLastName(@NotBlank String lastName) {
+    public void setLastName( String lastName) {
         this.lastName = lastName;
     }
 
-    public @NotBlank String getEmail() {
+    public  String getEmail() {
         return email;
     }
 
-    public void setEmail(@NotBlank String email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 
-    public @NotBlank String getPassword() {
+    public  String getPassword() {
         return password;
     }
 
-    public void setPassword(@NotBlank String password) {
+    public void setPassword( String password) {
         this.password = password;
     }
 

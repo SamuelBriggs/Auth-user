@@ -10,8 +10,7 @@ import lombok.Setter;
 
 public class UserRegistrationRequest {
 
-    @NotBlank(message = "Name cannot be blank or contain only spaces.")
-    @Size(min = 3, message = "Name must be at least 3 characters long.")
+    @NotBlank
     private String firstName;
 
 
@@ -39,7 +38,7 @@ public class UserRegistrationRequest {
         this.email = email;
     }
 
-    public @NotBlank(message = "Provide a Password") String getPassword() {
+    public String getPassword() {
         return password;
     }
 
@@ -55,15 +54,14 @@ public class UserRegistrationRequest {
         this.phone = phone;
     }
 
-    @NotBlank(message = "Name cannot be blank or contain only spaces.")
-    @Size(min = 3, message = "Name must be at least 3 characters long.")
+    @NotBlank
     private String lastName;
 
     @NotBlank
     @Column (unique = true)
     private String email;
 
-    @NotBlank(message = "Provide a Password")
+    @NotBlank
     private String password;
 
     private String phone;
